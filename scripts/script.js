@@ -91,26 +91,38 @@ function printChart(data) {
                     label: "bitcoin",
                     backgroundColor: "rgba(251, 255, 10, .3)",
                     borderColor: "#e77e05",
+                    fill: true,
+                    tension: .2,
                     data: prices[0]
                 },{
                     label: "ethereum",
                     backgroundColor: "rgba(116, 13, 212, .3)",
                     borderColor: "#d40db9",
-                    fillOpacity: .1,
+                    fill: true,
+                    tension: .2,
                     data: prices[1]
                 },{
                     label: "binance",
                     backgroundColor: "rgba(18, 6, 189, .3)",
                     borderColor: "black",
+                    fill: true,
+                    tension: .2,
                     data: prices[2]
                 },{
                     label: "solana",
                     backgroundColor: "rgba(70, 180, 180, .3)",
                     borderColor: "#bd3754",
+                    fill: true,
+                    tension: .2,
                     data: prices[3]
                 }
             ]
-        }
+        },
+        options: {
+
+            scales:{ y:{ ticks:{ callback: (value) => value + "$"}}},
+        },
+
     })
 
 }
