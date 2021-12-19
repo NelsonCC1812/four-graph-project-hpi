@@ -67,8 +67,9 @@ async function setChart() {
     
 }
 
-inputs.forEach(elm => elm.onchange = () => setChart())
+
 function setListeners() {
+    inputs.forEach(elm => elm.onchange = () => setChart())
 }
 
 function printChart(data) {
