@@ -5,6 +5,8 @@ const error = document.getElementById("error")
 const max = document.getElementById("max")
 const min = document.getElementById("min")
 
+let chart
+
 let prices
 
 setStartDate()
@@ -69,7 +71,10 @@ async function setChart() {
 
 
 function setListeners() {
-    inputs.forEach(elm => elm.onchange = () => setChart())
+    inputs.forEach(elm => elm.onchange = () => {
+        removeData(chart)
+        setChart()
+    })
 }
 
 function printChart(data) {
@@ -83,9 +88,13 @@ function printChart(data) {
 
     const ctx = document.getElementById("myChart").getContext("2d")
 
-    new Chart(ctx, {
+    document.getElementById("myChart").height = 120;
+    document.getElementById("myChart").width = 250;
+
+    chart = new Chart(ctx, {
         type: "line",
         data: {
+            height: 250,
             labels: dates,
             datasets: [
                 {
@@ -120,10 +129,14 @@ function printChart(data) {
             ]
         },
         options: {
-
+            responsive: true,
+            maintainAspectRatio: true,
             scales:{ y:{ ticks:{ callback: (value) => value + "$"}}},
         },
 
     })
+}
 
+function removeData(chart) {
+    chart.destroy()
 }
